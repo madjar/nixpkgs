@@ -5,9 +5,6 @@ set -e
 bash <(curl https://nixos.org/nix/install)
 source $HOME/.nix-profile/etc/profile.d/nix.sh
 
-ls -l /etc/nix
-cat /etc/nix/nix.conf
-
 sudo mkdir /etc/nix
 echo "binary-caches = http://cache.nixos.org http://hydra.nixos.org" | sudo tee /etc/nix/nix.conf
 echo "trusted-binary-caches = http://hydra.nixos.org" | sudo tee -a /etc/nix/nix.conf
