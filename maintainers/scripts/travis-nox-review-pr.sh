@@ -1,16 +1,18 @@
 #! /usr/bin/env bash
 set -e
 
-# Only run for pull requests
-if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
-  echo "Not a pull request, checking evaluation"
-  nix-env -f. -qaP --drv-path
-  exit 0
-fi
-
 # Install Nix
 bash <(curl https://nixos.org/nix/install)
 source $HOME/.nix-profile/etc/profile.d/nix.sh
+
+ls -l /etc/nix
+cat /etc/nix/nix.conf
+
+if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
+    echo "Not a pull request, checking evaluation"
+    nix-env -f. -qaP --drv-path
+    exit 0
+fi
 
 echo "Installing nox"
 git clone https://github.com/madjar/nox
