@@ -5,6 +5,7 @@ set -e
 bash <(curl https://nixos.org/nix/install)
 source $HOME/.nix-profile/etc/profile.d/nix.sh
 
+# Make sure we can use hydra's binary cache
 sudo mkdir /etc/nix
 echo "binary-caches = http://cache.nixos.org http://hydra.nixos.org" | sudo tee /etc/nix/nix.conf
 echo "trusted-binary-caches = http://hydra.nixos.org" | sudo tee -a /etc/nix/nix.conf
@@ -17,7 +18,8 @@ fi
 
 echo "Installing nox"
 git clone https://github.com/madjar/nox
-nix-env -if nox
+pip install -e nox
+#nix-env -if nox
 
 # nox-review is hardcoded to nixos/nixpkgs, so we give it a hand
 mkdir ~/.nox
