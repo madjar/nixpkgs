@@ -1,0 +1,1 @@
+script: ./maintainers/scripts/travis-nox-review-pr.sh
