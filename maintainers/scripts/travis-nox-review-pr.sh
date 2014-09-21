@@ -8,6 +8,10 @@ source $HOME/.nix-profile/etc/profile.d/nix.sh
 ls -l /etc/nix
 cat /etc/nix/nix.conf
 
+sudo mkdir /etc/nix
+echo "binary-caches = http://cache.nixos.org http://hydra.nixos.org" | sudo tee /etc/nix/nix.conf
+echo "trusted-binary-caches = http://hydra.nixos.org" | sudo tee -a /etc/nix/nix.conf
+
 if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     echo "Not a pull request, checking evaluation"
     nix-env -f. -qaP --drv-path
