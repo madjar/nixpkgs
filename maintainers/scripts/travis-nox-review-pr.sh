@@ -16,6 +16,10 @@ echo "Installing nox"
 git clone https://github.com/madjar/nox
 nix-env -if nox
 
+# nox-review is hardcoded to nixos/nixpkgs, so we give it a hand
+mkdir ~/.nox
+git clone https://github.com/madjar/nixpkgs.git ~/.nox/nixpkgs
+
 echo "Reviewing PR"
 # The current HEAD is the PR merged into origin/master, so we compare
 # against origin/master
